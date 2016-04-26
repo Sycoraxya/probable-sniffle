@@ -1,6 +1,8 @@
 # probable-sniffle
 Testimonials carousel
 
+## HTML MARKUP
+
 ```html
 <div class="testimonial-wrapper">
     <section class="testimonial">
