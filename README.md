@@ -12,9 +12,7 @@ Testimonials carousel
             <span class="company">Probike tweewielers</span>
         </span>
         <span class="quote">
-            We all need to pick a day to try and make trend. Oh Gob, you could 
-            charm the black off a telegram boy. Annyong. Te quiero. English, 
-            please. I love you! Great, now I'm late.
+            there's always money in the banana stand!
         </span>
     </section>
     <section class="testimonial">
@@ -24,9 +22,8 @@ Testimonials carousel
             <span class="company">The bluth company</span>
         </span>
         <span class="quote">
-            I was set up. By the Brits. A group of British builders operating 
-            outside the O.C. And here you are coming out of your mother's third 
-            base! No, no, it's pronounced a-nal-ra-pist.
+            You buy yourself a tape recorder, you just record yourself for a 
+            whole day. I think you’re going to be surprised at some of your phrasing.
         </span>
     </section>
 </div>
