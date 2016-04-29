@@ -47,7 +47,7 @@ Testimonials carousel
 
 ## USAGE 
 
-Drop the HTML somewhere in your document, add the css to your stylesheet and call the script using:
+Drop the HTML somewhere in your document, add styling (you can use the style.css as a base) and call the script using:
 
 ```js
 (function () {
