@@ -67,7 +67,8 @@ $(document).ready(function () {
 
 ### Interval speed
 
-You can change the interval speed in app.js. The interval can be disabled if speed is set to 0
+You can change the interval speed in app.js (standard 5 seconds). 
+The interval can be disabled if the speed is set to 0.
 
 ```js
 speed: 5000
