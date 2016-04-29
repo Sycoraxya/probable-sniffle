@@ -99,7 +99,3 @@ var testimonials = {
         }
     }
 };
-
-//(function () {
-//    testimonials.init($('.testimonial-wrapper'));
-//})();
