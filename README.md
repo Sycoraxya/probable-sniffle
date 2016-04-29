@@ -75,3 +75,12 @@ The interval can be disabled if the speed is set to 0.
 ```js
 speed: 5000
 ```
+
+### Testimonial height
+
+You can set the height of the testimonial items (standard 100px).
+This needs to be made dynamic but will do for now
+
+```js
+height: 100
+```
