@@ -1,0 +1,48 @@
+/* 
+    Created on : 28-Apr-2016, 13:20:16
+    Author     : Stefan
+*/
+
+.testimonial-wrapper {
+    width: 500px;
+    position: relative;
+    display: inline-block;
+}
+
+.testimonial {
+    width: 500px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    height: 100px;
+}
+
+.testimonial-wrapper .info {
+    background: white;
+}
+
+.testimonial-wrapper .image{
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 50%;
+}
+
+.testimonial-wrapper .navigation {
+    display: inline-block;
+    margin-top: 110px;
+}
+
+.testimonial-wrapper .navigation .nav-sphere {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    background: #1fb25a;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 0 2px;
+}
