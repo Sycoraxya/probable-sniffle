@@ -54,3 +54,13 @@ Drop the HTML somewhere in your document, add styling (you can use the style.css
     testimonials.init($('.testimonial-wrapper'));
 })();
 ```
+
+## OPTIONS
+
+### Interval speed
+
+You can change the interval speed in app.js. The interval can be disabled if speed is set to 0
+
+```js
+speed: 5000
+```
