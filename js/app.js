@@ -11,9 +11,13 @@
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
  */
 
+/**
+ * TODO: add different animation types, make interval optional
+ */
+
 var testimonials = {
     animationType: 'fade', // fade or slide
-    speed: 5000, // time each testimonial is visible
+    speed: 5000, // time each testimonial is visible. Disables the timer if set to 0
     testimonialElements: [], // Object of all <section> elements in the wrapper. {element, text, image, name, company}
     wrapperElement: '',
     $wrapperElement: [],
@@ -30,6 +34,7 @@ var testimonials = {
         this.addNav();
         this.setActive(this.currentSlide);
         this.bindClicks();
+        
         this.initInterval();
     },
     getAllElements: function () {
@@ -87,9 +92,11 @@ var testimonials = {
         this.initInterval();
     },
     initInterval: function () {
-        this.testimonialsInterval = window.setInterval(function () {
-            testimonials.next();
-        }, this.speed);
+        if (this.speed > 1) {
+            this.testimonialsInterval = window.setInterval(function () {
+                testimonials.next();
+            }, this.speed);
+        }
     }
 };
 
