@@ -9,9 +9,7 @@
  * 
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
- */
 
-/**
  * TODO: add different animation types, make interval optional
  */
 
@@ -34,7 +32,7 @@ var testimonials = {
         this.addNav();
         this.setActive(this.currentSlide);
         this.bindClicks();
-        
+
         this.initInterval();
     },
     getAllElements: function () {
