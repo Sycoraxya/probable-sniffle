@@ -10,11 +10,11 @@
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
 
- * TODO: add different animation types, make interval optional
+ * TODO: add different animation types, add styling templates for out-of-the-box use
  */
 
 var testimonials = {
-    animationType: 'fade', // fade or slide
+    animationType: 'fade', // fade or slide (not yet implemented)
     speed: 5000, // time each testimonial is visible. Disables the timer if set to 0
     testimonialElements: [], // Object of all <section> elements in the wrapper. {element, text, image, name, company}
     wrapperElement: '',
