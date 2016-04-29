@@ -11,7 +11,8 @@
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
 
- * TODO: make height calc more dynamic, disable interval on hover, add different animation types, add styling templates for out-of-the-box use
+ * TODO: make height calc more dynamic (like setting the padding and checking if the highest testimonial is actually higher then the set height), 
+ * disable interval on hover, add different animation types, add styling templates for out-of-the-box use
  * 
  * TODO: Make options with a readOptions() function and initialize like this: testimonials.init({wrapper: $('wrapper'), speed: 5000, navElement: $('nav')})
  */
@@ -123,7 +124,7 @@ var testimonials = {
         var center = Math.floor((this.height / 2) - (element.innerHeight() / 2));
         element.css("padding-top", center);
     },
-    setInfoTopoffset: function () {
+    setInfoTopOffset: function () {
         $('.' + this.wrapperElement + ' .info').css("top", (this.height - 10));
     },
     setNavigationMargin: function () {
