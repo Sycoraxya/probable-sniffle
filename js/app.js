@@ -23,7 +23,7 @@ var testimonials = {
     testimonialsInterval: false,
     /**
      * Takes a jQuery element that is the wrapper for the carousel.
-     * @param {type} wrapperElement
+     * @param {jQuery element} wrapperElement
      */
     init: function (wrapperElement) {
         this.$wrapperElement = $(wrapperElement);
