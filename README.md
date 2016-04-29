@@ -1,7 +1,9 @@
 # probable-sniffle
 Testimonials carousel
 
-## HTML MARKUP
+## USAGE 
+
+### HTML MARKUP
 
 ```html
 <div class="testimonial-wrapper">
@@ -45,7 +47,7 @@ Testimonials carousel
 </div>
 ```
 
-## USAGE 
+### JAVASCRIPT
 
 Drop the HTML somewhere in your document, add styling (you can use the style.css as a base) and call the script using:
 
