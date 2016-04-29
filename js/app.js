@@ -1,6 +1,7 @@
 /* 
  Created on : 26-Apr-2016, 14:24:51
  Author     : Stefan Verweij
+ Version    : 0.2
  */
 
 /**
@@ -10,12 +11,14 @@
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
 
- * TODO: disable interval on hover, add different animation types, add styling templates for out-of-the-box use
+ * TODO: calculate wrapper height based on active testimonial, disable interval on hover, add different animation types, add styling templates for out-of-the-box use
+ * 
+ * TODO: Make options with a readOptions() function and initialize like this: testimonials.init({wrapper: $('wrapper'), speed: 5000, navElement: $('nav')})
  */
 
 var testimonials = {
     animationType: 'fade', // fade or slide (not yet implemented)
-    speed: 0, // time each testimonial is visible. Disables the timer if set to 0
+    speed: 5000, // time each testimonial is visible. Disables the timer if set to 0
     testimonialElements: [], // Object of all <section> elements in the wrapper. {element, text, image, name, company}
     wrapperElement: '',
     $wrapperElement: [],
@@ -31,6 +34,7 @@ var testimonials = {
         this.getAllElements();
         this.addNav();
         this.setActive(this.currentSlide);
+        this.setTestimonialHeight();
         this.bindClicks();
 
         this.initInterval();
@@ -95,5 +99,8 @@ var testimonials = {
                 testimonials.next();
             }, this.speed);
         }
+    },
+    setTestimonialHeight: function () {
+        // Get height of highest testimonial, set the height of all the testimonials to that value and vertically center the text
     }
 };
