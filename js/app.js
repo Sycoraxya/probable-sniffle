@@ -123,7 +123,7 @@ var testimonials = {
         var center = Math.floor((this.height / 2) - (element.innerHeight() / 2));
         element.css("padding-top", center);
     },
-    setInfoMargin: function () {
+    setInfoTop: function () {
         $('.' + this.wrapperElement + ' .info').css("top", (this.height - 10));
     },
     setNavigationMargin: function () {
