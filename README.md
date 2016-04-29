@@ -55,7 +55,7 @@ Drop the HTML somewhere in your document, add styling (you can use the style.css
 })();
 ```
 
-or initialise it when the document is loaded
+Or initialise it when the document is loaded:
 
 ```js
 $(document).ready(function () {
