@@ -18,6 +18,7 @@ var testimonials = {
     wrapperElement: '',
     $wrapperElement: [],
     currentSlide: 1,
+    testimonialsInterval: false,
     /**
      * Takes a jQuery element that is the wrapper for carousel.
      * @param {type} wrapperElement
@@ -29,7 +30,7 @@ var testimonials = {
         this.addNav();
         this.setActive(this.currentSlide);
         this.bindClicks();
-        this.initTimer();
+        this.initInterval();
     },
     getAllElements: function () {
         var elements = $('.' + this.wrapperElement + ' section');
@@ -65,12 +66,13 @@ var testimonials = {
     },
     bindClicks: function () {
         this.$wrapperElement.find('.navigation span').bind("click", function (e) {
+            clearInterval(testimonials.testimonialsInterval);
             testimonials.animateTo(e.target);
         });
     },
     next: function () {
         if (this.currentSlide < this.testimonialElements.length) {
-            this.setActive(this.currentSlide + 1);
+            this.setActive(Number(this.currentSlide) + 1);
         } else {
             this.setActive(1);
         }
@@ -82,9 +84,10 @@ var testimonials = {
     animateTo: function (e) {
         var index = $(e).attr('data-index');
         this.setActive(index);
+        this.initInterval();
     },
-    initTimer: function () {
-        var testimonialTimer = window.setInterval(function () {
+    initInterval: function () {
+        this.testimonialsInterval = window.setInterval(function () {
             testimonials.next();
         }, this.speed);
     }
