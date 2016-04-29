@@ -20,7 +20,7 @@ var testimonials = {
     currentSlide: 1,
     testimonialsInterval: false,
     /**
-     * Takes a jQuery element that is the wrapper for carousel.
+     * Takes a jQuery element that is the wrapper for the carousel.
      * @param {type} wrapperElement
      */
     init: function (wrapperElement) {
