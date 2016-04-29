@@ -4,7 +4,7 @@
 */
 
 .testimonial-wrapper {
-    width: 500px;
+    width: 800px;
     position: relative;
     display: inline-block;
 }
@@ -17,32 +17,69 @@
     background: white;
     width: 100%;
     height: 100px;
+    opacity: 0;
+    will-change: opacity;
+    transition: opacity 0.2s ease-in-out;
+}
+
+.testimonial.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.testimonial .quote {
+    text-align: center;
+    display: block;
+    font-size: 1.5em;
 }
 
 .testimonial-wrapper .info {
     background: white;
+    position: absolute;
+    top: 90px;
+    right: 0;
+    width: 250px;
+}
+
+.testimonial-wrapper .info span {
+    display: inline-block;
+}
+
+.testimonial-wrapper .info span.inf-wrap {
+    vertical-align: middle;
+}
+
+.testimonial-wrapper .info span span {
+    display: block;
 }
 
 .testimonial-wrapper .image{
     width: 60px;
     height: 60px;
-    display: inline-block;
     background-size: cover;
     background-position: center center;
     border-radius: 50%;
+    vertical-align: middle;
+    margin-right: 10px;
 }
 
 .testimonial-wrapper .navigation {
     display: inline-block;
     margin-top: 110px;
+    width: 100%;
+    text-align: center;
 }
 
 .testimonial-wrapper .navigation .nav-sphere {
     width: 15px;
     height: 15px;
     display: inline-block;
-    background: #1fb25a;
+    background: #ccc;
     border-radius: 50%;
     cursor: pointer;
     margin: 0 2px;
+}
+
+.testimonial-wrapper .navigation .nav-sphere.active {
+    background: #1fb25a;
 }
