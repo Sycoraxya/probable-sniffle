@@ -109,7 +109,7 @@ var testimonials = {
         // Get height of highest testimonial, set the height of all the testimonials to that value and vertically center the text
         this.maxHeight = this.getHighestTestimonial();
         $('.' + this.wrapperElement + ' .testimonial').css("height", this.maxHeight);
-        this.setInfoMargin();
+        this.setInfoTopOffset();
         this.setNavigationMargin();
     },
     getHighestTestimonial: function () {
@@ -123,7 +123,7 @@ var testimonials = {
         var center = Math.floor((this.height / 2) - (element.innerHeight() / 2));
         element.css("padding-top", center);
     },
-    setInfoTop: function () {
+    setInfoTopoffset: function () {
         $('.' + this.wrapperElement + ' .info').css("top", (this.height - 10));
     },
     setNavigationMargin: function () {
