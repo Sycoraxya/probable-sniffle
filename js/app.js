@@ -102,5 +102,16 @@ var testimonials = {
     },
     setTestimonialHeight: function () {
         // Get height of highest testimonial, set the height of all the testimonials to that value and vertically center the text
+        var maxHeight = this.getHighestTestimonial();
+        
+        $('.' + this.wrapperElement + ' .testimonial').css("height", maxHeight);
+    },
+    getHighestTestimonial: function () {
+        var heights = $('.' + this.wrapperElement + ' .testimonial').map(function () {
+            return $(this).height();
+        }).get();
+        console.log(heights);
+        
+        return Math.max.apply(null, heights);
     }
 };

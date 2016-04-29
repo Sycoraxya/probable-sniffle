@@ -16,7 +16,7 @@
     left: 0;
     background: white;
     width: 100%;
-    height: 100px;
+    height: auto;
     opacity: 0;
     will-change: opacity;
     transition: opacity 0.2s ease-in-out;
