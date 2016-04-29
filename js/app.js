@@ -100,6 +100,6 @@ var testimonials = {
     }
 };
 
-(function () {
-    testimonials.init($('.testimonial-wrapper'));
-})();
+//(function () {
+//    testimonials.init($('.testimonial-wrapper'));
+//})();
