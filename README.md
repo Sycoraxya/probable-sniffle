@@ -78,7 +78,7 @@ speed: 5000
 
 ### Testimonial height
 
-You can set the height and padding of the testimonial items (standard 100px and 20px respectively).
+You can set the height and padding of the testimonial items (standard 100px and 10px respectively).
 If the highest testimonial item is higher than the set height, the set height will be overruled.
 
 ```js
