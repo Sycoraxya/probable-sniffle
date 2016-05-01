@@ -85,3 +85,11 @@ If the highest testimonial item is higher than the set height, the set height wi
 height: 100
 padding: 10
 ```
+
+### Pause on hover
+
+Clears the interval on hover if this is set to true (standard true).
+
+```js
+pauseOnHover: true
+```
