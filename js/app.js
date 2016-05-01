@@ -10,7 +10,7 @@
  * 
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
-
+ * 
  * TODO: disable interval on hover, add different animation types, add styling templates for out-of-the-box use
  * 
  * TODO: Make options with a readOptions() function and initialize like this: testimonials.init({wrapper: $('wrapper'), speed: 5000, navElement: $('nav')})
@@ -23,6 +23,7 @@ var testimonials = {
     speed: 5000, // time each testimonial is visible. Disables the timer if set to 0
     height: 100, // minimal height of all testimonial items,
     padding: 10, // Sets the padding on the top and bottom of the testimonials
+    pauseOnHover: true, // Pauses the carousel on hover if set to true (warning: clears the timer)
     testimonialElements: [], // Object of all <section> elements in the wrapper.
     wrapperElement: '',
     $wrapperElement: [],
@@ -40,6 +41,8 @@ var testimonials = {
         this.bindClicks();
 
         this.initInterval();
+        if (this.pauseOnHover === true)
+            this.clearOnHover();
     },
     getAllElements: function () {
         var elements = $('.' + this.wrapperElement + ' section');
@@ -133,5 +136,11 @@ var testimonials = {
         
         $('.' + this.wrapperElement + ' .info').css("top", innerHeight);
         $('.' + this.wrapperElement + ' .navigation').css("margin-top", (innerHeight + 20));
+    },
+    clearOnHover: function () {
+        $('.' + this.wrapperElement).bind({
+            mouseover: function () { clearInterval(testimonials.testimonialsInterval);},
+            mouseout: function () { testimonials.initInterval();},
+        });
     }
 };
