@@ -11,7 +11,7 @@
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
  * 
- * TODO: disable interval on hover, add different animation types, add styling templates for out-of-the-box use
+ * TODO: add different animation types, add styling templates for out-of-the-box use
  * 
  * TODO: Make options with a readOptions() function and initialize like this: testimonials.init({wrapper: $('wrapper'), speed: 5000, navElement: $('nav')})
  * 
@@ -140,7 +140,10 @@ var testimonials = {
     clearOnHover: function () {
         $('.' + this.wrapperElement).bind({
             mouseover: function () { clearInterval(testimonials.testimonialsInterval);},
-            mouseout: function () { testimonials.initInterval();},
+            mouseout: function () { 
+                clearInterval(testimonials.testimonialsInterval); 
+                testimonials.initInterval();
+            },
         });
     }
 };
