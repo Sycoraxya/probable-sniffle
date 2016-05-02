@@ -41,13 +41,14 @@ var testimonials = {
         this.bindClicks();
 
         this.initInterval();
+        this.onResize();
         if (this.pauseOnHover === true)
             this.clearOnHover();
     },
     getAllElements: function () {
         var elements = $('.' + this.wrapperElement + ' section');
         
-        this.setTestimonialHeight(); 
+        this.setContainerHeight(); 
         
         // loop through all elements, create seperate objects from them and store them all in this.testimonialElements
         for (i = 0; i < elements.length; i++) {
@@ -116,26 +117,24 @@ var testimonials = {
         
         return Math.max.apply(null, heights);
     },
-    setTestimonialHeight: function () {
+    setContainerHeight: function () {
         var maxHeight = this.getHighestTestimonial();
-        
         if (maxHeight > this.height) {
-            $('.' + this.wrapperElement + ' .testimonial').css("height", (maxHeight + (this.padding * 2)));
+            $('.' + this.wrapperElement + ' .container').css("height", (maxHeight + (this.padding * 2)));
         } else {
-            $('.' + this.wrapperElement + ' .testimonial').css("height", (this.height + (this.padding * 2)));
+            $('.' + this.wrapperElement + ' .container').css("height", (this.height + (this.padding * 2)));
         }
         
         this.setHudOffset();
     },
     centerVertically: function (element) {
-        var center = Math.floor(($('.' + this.wrapperElement + ' .testimonial').innerHeight() / 2) - (element.innerHeight() / 2));
+        var center = Math.floor(($('.' + this.wrapperElement + ' .container').innerHeight() / 2) - (element.innerHeight() / 2));
         element.css("padding-top", center);
     },
     setHudOffset: function () {
-        var innerHeight = $('.' + this.wrapperElement + ' .testimonial').innerHeight();
+        var innerHeight = $('.' + this.wrapperElement + ' .container').innerHeight();
         
         $('.' + this.wrapperElement + ' .info').css("top", innerHeight);
-        $('.' + this.wrapperElement + ' .navigation').css("margin-top", (innerHeight + 20));
     },
     clearOnHover: function () {
         $('.' + this.wrapperElement).bind({
@@ -144,6 +143,12 @@ var testimonials = {
                 clearInterval(testimonials.testimonialsInterval); 
                 testimonials.initInterval();
             },
+        });
+    },
+    onResize: function () {
+        $(window).bind('resize', function() {
+            var elements = $('.' + this.wrapperElement + ' section');
+            testimonials.setContainerHeight();
         });
     }
 };
