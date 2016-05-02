@@ -71,7 +71,7 @@ $(document).ready(function () {
 
 ### Interval speed
 
-You can change the interval speed in app.js (standard 5 seconds). 
+You can change the interval speed in app.js (default 5 seconds). 
 The interval can be disabled if the speed is set to 0.
 
 ```js
@@ -80,7 +80,7 @@ speed: 5000
 
 ### Testimonial padding
 
-You can set the padding of the testimonial items (standard 20px).
+You can set the padding of the testimonial items (default 20px).
 
 ```js
 padding: 20
@@ -88,7 +88,7 @@ padding: 20
 
 ### Pause on hover
 
-Clears the interval on hover if this is set to true (standard true).
+Clears the interval on hover if this is set to true (default true).
 
 ```js
 pauseOnHover: true
