@@ -1,12 +1,14 @@
 /* 
  Created on : 26-Apr-2016, 14:24:51
  Author     : Stefan Verweij
- Version    : 1.0.2
+ Version    : 1.1.0
  */
 
 /**
  * TODO: add create function and call using a function constructor. See
  * https://github.com/Sycoraxya/effective-dollop
+ * 
+ * TODO: incorporate modernizr
  * 
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
@@ -37,13 +39,17 @@ var testimonials = {
         this.wrapperElement = wrapperElement[0].className;
         this.getAllElements();       
         this.addNav();
+        
+        this.setContainerHeight();
+        
         this.setActive(this.currentSlide);
         this.bindClicks();
 
         this.initInterval();
-        this.onResize();
         if (this.pauseOnHover === true)
             this.clearOnHover();
+        
+        this.onResize();
     },
     getAllElements: function () {
         var elements = $('.' + this.wrapperElement + ' section');
@@ -60,10 +66,8 @@ var testimonials = {
             testimonials.testimonialElements.push({
                 element: elements[i],
             });
-            this.centerVertically($testimonialElement.find('.quote'));
             
         }
-        this.setContainerHeight();
     },
     addNav: function () {
         for (i = 1; i < (this.testimonialElements.length + 1); i++) {
@@ -111,33 +115,9 @@ var testimonials = {
             }, this.speed);
         }
     },
-    getHighestTestimonial: function () {
-        var heights = $('.' + this.wrapperElement + ' .testimonial').map(function () {
-            return $(this).outerHeight();
-        }).get();
-        
-        return Math.max.apply(null, heights);
-    },
-    setContainerHeight: function () {
-        this.highest = this.getHighestTestimonial();
-        $('.' + this.wrapperElement + ' .container').css("height", (this.highest + this.padding));
-        
-        this.setHudOffset();
-    },
-    centerVertically: function (element) {
-        if (element.attr('style') === undefined) {
-            var center = Math.floor(((this.highest  + (this.padding * 2)) / 2) - (element.innerHeight() / 2));
-            element.css("margin-top", center);
-        } else {
-            var center = Math.floor(($('.' + this.wrapperElement + ' .container').innerHeight() / 2) - (element.innerHeight() / 2));
-            element.css("margin-top", center);
-        }
-    },
-    setHudOffset: function () {
-        var innerHeight = $('.' + this.wrapperElement + ' .container').innerHeight();
-        
-        $('.' + this.wrapperElement + ' .info').css("top", innerHeight + this.padding);
-    },
+    /**
+     * Clears the interval on mouseover and restarts the interval on mouseout
+     */
     clearOnHover: function () {
         $('.' + this.wrapperElement).bind({
             mouseover: function () { clearInterval(testimonials.testimonialsInterval);},
@@ -147,17 +127,66 @@ var testimonials = {
             },
         });
     },
+    /**
+     * Returns the height of the highest testimonial
+     * @returns {number}
+     */
+    getHighestTestimonial: function () {
+        var heights = $('.' + this.wrapperElement + ' .testimonial').map(function () {
+            return $(this).height();
+        }).get();
+        
+        return Math.max.apply(null, heights);
+    },
+    /**
+     * Set the height of the container element and calls the functions to 
+     * vertically center the quote elements and place the info at the right spot
+     */
+    setContainerHeight: function () {
+        // Gets the highest testimonial and applies that height + padding * 2 to the container
+        this.highest = this.getHighestTestimonial();
+        var heightAndPadding = (this.highest + (this.padding * 2));
+        $('.' + this.wrapperElement + ' .container').css({height: heightAndPadding});
+        
+        // loop through all quote elements and center them vertically
+        for (i=0;i < this.testimonialElements.length; i++) {
+            this.centerVertical(this.testimonialElements[i].element, heightAndPadding);
+        };
+        
+        // Give the info a top property of the container height + 20px
+        this.placeHud(heightAndPadding);
+    },
+    /**
+     * Takes in the testimonial height and the container height and sets the 
+     * padding of the quote so the element is centered
+     * @param {element} element
+     * @param {number} containerHeight
+     */
+    centerVertical: function (element, containerHeight) {
+        var $element = $(element),
+            quote = $element.find('.quote'),
+            quoteHeight = quote.height(),
+            paddingTop = (containerHeight / 2) - (quoteHeight / 2);
+        
+        $element.css({paddingTop: paddingTop});
+    },
+    /**
+     * Takes the height of the container element and sets the top value to 
+     * that + 20px
+     * @param {number} heightAndPadding
+     */
+    placeHud: function (heightAndPadding) {
+        var info = $('.' + this.wrapperElement + ' .testimonial .info'),
+            top = heightAndPadding + 20;
+        
+        info.css({top: top});
+    },
+    /**
+     * Sets the container height on each resize
+     */
     onResize: function () {
-        $(window).bind('resize', function() {
-            testimonials.highest = testimonials.getHighestTestimonial();
-            console.log(testimonials.highest);
+        $(window).bind('resize', function () {
             testimonials.setContainerHeight();
-            var elements = $('.' + testimonials.wrapperElement + ' section');
-            for (i = 0; i < elements.length; i++) {
-            var testimonialElement = elements[i],
-                $testimonialElement = $(testimonialElement);
-            testimonials.centerVertically($testimonialElement.find('.quote'));
-            }
-        });
+        })
     }
 };
