@@ -11,7 +11,7 @@
  * var testimonialsTest = Object.create(Testimonials);
  * testimonialsTest.init($('.testimonial-wrapper'), 'testimonialsTest')
  * 
- * TODO: add different animation types, add styling templates for out-of-the-box use
+ * TODO: add different animation types, add styling templates for out-of-the-box use, resize only when it is actually necessary, next & back arrows
  * 
  * TODO: Make options with a readOptions() function and initialize like this: testimonials.init({wrapper: $('wrapper'), speed: 5000, navElement: $('nav')})
  * 
@@ -21,13 +21,13 @@
 var testimonials = {
     animationType: 'fade', // fade or slide (not yet implemented)
     speed: 5000, // time each testimonial is visible. Disables the timer if set to 0
-    height: 100, // minimal height of all testimonial items,
-    padding: 10, // Sets the padding on the top and bottom of the testimonials
+    padding: 20, // Sets the padding on the top and bottom of the testimonials
     pauseOnHover: true, // Pauses the carousel on hover if set to true (warning: clears the timer)
     testimonialElements: [], // Object of all <section> elements in the wrapper.
     wrapperElement: '',
     $wrapperElement: [],
     currentSlide: 1,
+    highest: 0,
     /**
      * Takes a jQuery element that is the wrapper for the carousel.
      * @param {jQuery element} wrapperElement
@@ -48,7 +48,7 @@ var testimonials = {
     getAllElements: function () {
         var elements = $('.' + this.wrapperElement + ' section');
         
-        this.setContainerHeight(); 
+        this.highest = this.getHighestTestimonial();
         
         // loop through all elements, create seperate objects from them and store them all in this.testimonialElements
         for (i = 0; i < elements.length; i++) {
@@ -63,6 +63,7 @@ var testimonials = {
             this.centerVertically($testimonialElement.find('.quote'));
             
         }
+        this.setContainerHeight();
     },
     addNav: function () {
         for (i = 1; i < (this.testimonialElements.length + 1); i++) {
@@ -112,24 +113,25 @@ var testimonials = {
     },
     getHighestTestimonial: function () {
         var heights = $('.' + this.wrapperElement + ' .testimonial').map(function () {
-            return $(this).height();
+            return $(this).outerHeight();
         }).get();
         
         return Math.max.apply(null, heights);
     },
     setContainerHeight: function () {
-        var maxHeight = this.getHighestTestimonial();
-        if (maxHeight > this.height) {
-            $('.' + this.wrapperElement + ' .container').css("height", (maxHeight + (this.padding * 2)));
-        } else {
-            $('.' + this.wrapperElement + ' .container').css("height", (this.height + (this.padding * 2)));
-        }
+        this.highest = this.getHighestTestimonial();
+        $('.' + this.wrapperElement + ' .container').css("height", (this.highest + this.padding));
         
         this.setHudOffset();
     },
     centerVertically: function (element) {
-        var center = Math.floor(($('.' + this.wrapperElement + ' .container').innerHeight() / 2) - (element.innerHeight() / 2));
-        element.css("padding-top", center);
+        if (element.attr('style') === undefined) {
+            var center = Math.floor(((this.highest  + (this.padding * 2)) / 2) - (element.innerHeight() / 2));
+            element.css("margin-top", center);
+        } else {
+            var center = Math.floor(($('.' + this.wrapperElement + ' .container').innerHeight() / 2) - (element.innerHeight() / 2));
+            element.css("margin-top", center);
+        }
     },
     setHudOffset: function () {
         var innerHeight = $('.' + this.wrapperElement + ' .container').innerHeight();
@@ -147,8 +149,15 @@ var testimonials = {
     },
     onResize: function () {
         $(window).bind('resize', function() {
-            var elements = $('.' + this.wrapperElement + ' section');
+            testimonials.highest = testimonials.getHighestTestimonial();
+            console.log(testimonials.highest);
             testimonials.setContainerHeight();
+            var elements = $('.' + testimonials.wrapperElement + ' section');
+            for (i = 0; i < elements.length; i++) {
+            var testimonialElement = elements[i],
+                $testimonialElement = $(testimonialElement);
+            testimonials.centerVertically($testimonialElement.find('.quote'));
+            }
         });
     }
 };
