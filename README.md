@@ -78,7 +78,7 @@ The interval can be disabled if the speed is set to 0.
 speed: 5000
 ```
 
-### Testimonial height
+### Testimonial padding
 
 You can set the padding of the testimonial items (standard 20px).
 

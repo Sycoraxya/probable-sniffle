@@ -1,7 +1,7 @@
 /* 
  Created on : 26-Apr-2016, 14:24:51
  Author     : Stefan Verweij
- Version    : 1.0.1
+ Version    : 1.0.2
  */
 
 /**
@@ -136,7 +136,7 @@ var testimonials = {
     setHudOffset: function () {
         var innerHeight = $('.' + this.wrapperElement + ' .container').innerHeight();
         
-        $('.' + this.wrapperElement + ' .info').css("top", innerHeight);
+        $('.' + this.wrapperElement + ' .info').css("top", innerHeight + this.padding);
     },
     clearOnHover: function () {
         $('.' + this.wrapperElement).bind({
