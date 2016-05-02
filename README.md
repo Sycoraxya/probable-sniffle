@@ -80,12 +80,11 @@ speed: 5000
 
 ### Testimonial height
 
-You can set the height and padding of the testimonial items (standard 100px and 10px respectively).
+You can set the padding of the testimonial items (standard 20px).
 If the highest testimonial item is higher than the set height, the set height will be overruled.
 
 ```js
-height: 100
-padding: 10
+padding: 20
 ```
 
 ### Pause on hover
