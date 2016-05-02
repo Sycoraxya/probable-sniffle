@@ -1,7 +1,7 @@
 /* 
  Created on : 26-Apr-2016, 14:24:51
  Author     : Stefan Verweij
- Version    : 0.3
+ Version    : 0.3.1
  */
 
 /**
