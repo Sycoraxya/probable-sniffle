@@ -82,8 +82,8 @@ var testimonials = {
         if ($('.' + this.wrapperElement + ' .active').length) {
             $('.' + this.wrapperElement + ' .active').removeClass('active');
         }
-        $('section[data-index="' + slide + '"').addClass('active');
-        $('.navigation span[data-index="' + slide + '"').addClass('active');
+        $('section[data-index="' + slide + '"]').addClass('active');
+        $('.navigation span[data-index="' + slide + '"]').addClass('active');
         this.currentSlide = slide;
     },
     bindClicks: function () {
@@ -153,7 +153,6 @@ var testimonials = {
             this.centerVertical(this.testimonialElements[i].element, heightAndPadding);
         };
         
-        // Give the info a top property of the container height + 20px
         this.placeHud(heightAndPadding);
     },
     /**
